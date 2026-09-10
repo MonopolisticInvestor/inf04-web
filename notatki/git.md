@@ -18,7 +18,8 @@ git merge inf04-mb01 - zmiksowanie zmian z gałęzi z aktualną gałęzią
 
 git remote add origin https://github.com/username/inf04-web.git - dodanie repozytorium zewnętrznego
 
-git push -u origin main - wysłanie aktualnej gałęzi na serwer
+git push -u origin main - wysłanie aktualnej gałęzi na serwer (np main - ale może ez byc inna, np inf04-mb01
+
 git pull - pobranie najnowszej wersji z serwera
 
 git clone "adres" - pobranie całego repozytorium z serwera
