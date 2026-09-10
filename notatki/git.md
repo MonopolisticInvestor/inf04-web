@@ -11,7 +11,14 @@ git diff - pokazuje zmiany od ostatniego commita
 
 git branch - pokazuje gałęźie i aktualną
 git branch "nazwa" - tworzy branch
-git switch -c inf04-mb01 - tworzenie nowej gałęzie i przejście na nią
+git switch -c inf04-mb01 - tworzenie nowej gałęzi i przejście na nią
 git switch master - powrót na główna gałąź
 
 git merge inf04-mb01 - zmiksowanie zmian z gałęzi z aktualną gałęzią
+
+git remote add origin https://github.com/username/inf04-web.git - dodanie repozytorium zewnętrznego
+
+git push -u origin main - wysłanie aktualnej gałęzi na serwer
+git pull - pobranie najnowszej wersji z serwera
+
+git clone "adres" - pobranie całego repozytorium z serwera
