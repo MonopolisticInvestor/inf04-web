@@ -11,3 +11,7 @@ git diff - pokazuje zmiany od ostatniego commita
 
 git branch - pokazuje gałęźie i aktualną
 git branch "nazwa" - tworzy branch
+git switch -c inf04-mb01 - tworzenie nowej gałęzie i przejście na nią
+git switch master - powrót na główna gałąź
+
+git merge inf04-mb01 - zmiksowanie zmian z gałęzi z aktualną gałęzią
