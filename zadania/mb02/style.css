@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+
+main img {
+    width: 100px;
+    height: 100px;
+}
+
+#headerSection {
+    display: flex;
+    gap: 20px;
+    background-color: rgb(71, 126, 207); 
+    color: white
+     /* #477DCE */
+}
+
+form {
+    width: 200px;
+    display: flex;
+    gap: 20px;
+    background-color: rgb(71, 126, 207); 
+    color: white;
+    flex-direction: column;
+    padding: 20px;
+}
+
+
+a:hover {
+    color: green;
+}
+
+button:hover {
+    color: rgb(12, 145, 168)
+}

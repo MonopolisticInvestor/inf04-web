@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizytówka</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main>
+        
+        <section id="headerSection">
+            <img src="Monopolistic_Investor.png" alt="Antoni Nabzdyk" />
+            <header>Antoni Nabzdyk 5P1T</header>
+            <section>
+                <header>Umiejętności</header>
+                <ol>
+                    <li>React</li>
+                    <li>Bootstrap</li>
+                    <li>Vite</li>
+                </ol>
+            </section>
+            
+        </section>
+
+        <section id="formSection">
+            <form>
+                <label for="name">Imię:</label>
+                <input type="text" name="name" id="name" required />
+                <span id="nameError"></span>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required />
+                <span id="emailError"></span>
+                <label for="subject">Temat:</label>
+                <select name="subject" id="subject">
+                    <option selected value="subject1">Temat 1</option>
+                    <option value="subject2">Temat 2</option>
+                    <option value="subject3">Temat 3</option>
+                </select>
+                
+                <label for="message">Wiadomość:</label>
+                <textarea name="message" id="message"></textarea>
+
+                <button id="btnSend">Wyślij</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script src="es6.js"></script>
+</body>
+</html>
