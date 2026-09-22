@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Rysy",
+    "description": "",
+    "category": "gory",
+    "image": "rysy.webp",
+    "imageLarge": "rysy.webp",
+    "alt": ""
+  },
+  {
+    "id": 2,
+    "title": "Rysy widok ze Słowacji",
+    "description": "",
+    "category": "gory",
+    "image": "rysy2.webp",
+    "imageLarge": "rysy2.webp",
+    "alt": ""
+  },
+  {
+    "id": 3,
+    "title": "Zakopane - góry",
+    "description": "",
+    "category": "gory",
+    "image": "gory2.webp",
+    "imageLarge": "gory2.webp",
+    "alt": ""
+  },
+  {
+    "id": 4,
+    "title": "Poznań",
+    "description": "",
+    "category": "miasto",
+    "image": "poznan.jpg",
+    "imageLarge": "poznan.jpg",
+    "alt": ""
+  },
+  {
+    "id": 5,
+    "title": "katowice",
+    "description": "",
+    "category": "miasto",
+    "image": "katowice.jpg",
+    "imageLarge": "katowice.jpg",
+    "alt": ""
+  },
+  {
+    "id": 6,
+    "title": "Warszawa",
+    "description": "",
+    "category": "miasto",
+    "image": "warsaw.jpg",
+    "imageLarge": "warsaw.jpg",
+    "alt": ""
+  },
+  {
+    "id": 7,
+    "title": "Gdynia",
+    "description": "",
+    "category": "miasto",
+    "image": "gdynia.jpg",
+    "imageLarge": "gdynia.jpg",
+    "alt": ""
+  },
+  {
+    "id": 8,
+    "title": "Ujście wisły",
+    "description": "",
+    "category": "morze",
+    "image": "ujscie-wisly.webp",
+    "imageLarge": "ujscie-wisly.webp",
+    "alt": ""
+  }
+]
