@@ -5,14 +5,17 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 
 import Hello from './components/Hello'
+import names from "./data/names.json"
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  console.log(names)
   return (
    <>
     <h1>Test</h1>
-    <Hello name="Antoni" klasa="5P1T"/>
+    {names.map((person) => (
+      <Hello name={person.name} />
+    ))}
+    {/* <Hello name="Antoni" klasa="5P1T"/> */}
    </>
   )
 }
