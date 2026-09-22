@@ -9,10 +9,10 @@
 // export default Hello
 import Test from "./Test"
 
-const Hello = () => {
+const Hello = (props) => {
     return (
         <>
-            <h1>Hello</h1>
+            <h1>Hello {props.name}, {props.klasa}</h1>
             <Test />
         </>
     )
