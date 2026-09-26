@@ -4,6 +4,7 @@ import Gallery from './components/Gallery'
 import CategoryBar from './components/CategoryBar'
 import Navbar from './components/Navbar'
 import AddPhotoModal from './components/AddPhotoModal'
+import FiltersOffCanvas from './components/FiltersOffCanvas'
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
               <button
               className='btn btn-outline-secondary'
               data-bs-toggle="offcanvas"
-              data-bs-target="#panelFiltrow"
+              data-bs-target="#filterPanel"
               type='button'>
                 Filtry
               </button>
@@ -45,6 +46,7 @@ function App() {
         <Gallery />
       </div>
       <AddPhotoModal/>
+      <FiltersOffCanvas />
    </div>
   )
 }
