@@ -1,10 +1,11 @@
-import { useState } from 'react'
+
 import './App.css'
 import Gallery from './components/Gallery'
 import CategoryBar from './components/CategoryBar'
 import Navbar from './components/Navbar'
 import AddPhotoModal from './components/AddPhotoModal'
 import FiltersOffCanvas from './components/FiltersOffCanvas'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
       </div>
       <AddPhotoModal/>
       <FiltersOffCanvas />
+      <Footer />
    </div>
   )
 }

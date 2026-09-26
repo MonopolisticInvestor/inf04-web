@@ -5,9 +5,8 @@ function Navbar() {
           <a href="/" className="navbar-brand">Galeria podróży</a>
 
           <ul className="navbar-nav d-flex gap-2">
-            <li href="#gallery">Galeria</li>
-            <li href="#categories">Kategorie</li>
-            <li href="#contact">Kontakt</li>
+            <li><a href="#gallery">Galeria</a></li>
+            <li><a href="#categories">Kategorie</a></li>
           </ul>
         </div>
       </nav>

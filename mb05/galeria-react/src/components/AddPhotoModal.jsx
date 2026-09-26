@@ -1,5 +1,3 @@
-import { Fragment } from "react/jsx-runtime";
-
 function AddPhotoModal() {
     return (
         <div className="modal fade" id="dodajZdjecie">

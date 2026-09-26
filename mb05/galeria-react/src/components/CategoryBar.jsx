@@ -1,6 +1,6 @@
 function CategoryBar() {
     return (
-        <div className="d-flex flex-row gap-3">
+        <div className="d-flex flex-row gap-3" id="categories">
             <button className="btn btn-outline-primary
 active">Wszystkie</button>
             <button className="btn btn-outline-primary">Góry</button>
