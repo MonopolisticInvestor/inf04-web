@@ -6,8 +6,35 @@ import Navbar from './components/Navbar'
 import AddPhotoModal from './components/AddPhotoModal'
 import FiltersOffCanvas from './components/FiltersOffCanvas'
 import Footer from './components/Footer'
+import { useState } from 'react'
+import photos from "./data/photos.json";
 
 function App() {
+  const [activeCategory, setActiveCategory] = useState('wszystkie');
+  const [basePhotos, setBasePhotos] = useState(photos);
+  const [activePhotos, setActivePhotos] = useState(basePhotos);
+
+  function changeCategory(category) {
+    setActiveCategory(category);
+
+    if (category !== "wszystkie") {
+      //console.log(activePhotos.filter(item => item.category == category ))
+      // trzeba filtrowac wszytskie a nie przefiltrwoane!
+      setActivePhotos(basePhotos.filter(item => 
+        item.category == category
+      ))
+    } else {
+      setActivePhotos(basePhotos);
+    }
+    
+  }
+
+  function deleteImage(id) {
+    setBasePhotos(basePhotos.filter(item => item.id != id))
+    // setActivePhotos(basePhotos)
+    console.log(basePhotos)
+  }
+
   return (
    <div>
     <Navbar />
@@ -43,8 +70,8 @@ function App() {
         </div>
       </header>
       <div className="container mt-4 d-flex flex-column gap-2">
-        <CategoryBar />
-        <Gallery />
+        <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
+        <Gallery photos={activePhotos} deleteFunction={deleteImage}/>
       </div>
       <AddPhotoModal/>
       <FiltersOffCanvas />

@@ -3,7 +3,7 @@ const NAZWA_KATEGORII = { gory: 'Góry', morze: 'Morze', miasto:
 const KOLOR_KATEGORII = { gory: 'success', morze: 'primary', miasto:
 'dark' }
 
-function PhotoCard({id, title, description, category, image, alt}) {
+function PhotoCard({id, title, description, category, image, alt, deleteFunction}) {
     // console.log(id, `#zdjecie${id}`);
     return (
       <div id={`PhotoCard-${id}`} className="card h-100">
@@ -19,8 +19,11 @@ function PhotoCard({id, title, description, category, image, alt}) {
             </p>
             <p className="card-text text-body-secondary">{description}</p>
 
-            <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#zdjecie${id}`}>Powiększ</button>
-        </div>
+            <div className="d-flex gap-2">
+                <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#zdjecie${id}`}>Powiększ</button>
+                <button className="btn btn-danger" onClick={() => {deleteFunction(id)}}>Usuń</button>
+            </div>
+           </div>
       </div>
     );
 }
