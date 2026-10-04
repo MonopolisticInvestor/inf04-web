@@ -5,9 +5,37 @@ import CategoryBar from './components/CategoryBar'
 import Navbar from './components/Navbar'
 import AddPhotoModal from './components/AddPhotoModal'
 import FiltersOffCanvas from './components/FiltersOffCanvas'
+import ImageCounter from './components/ImageCounter'
 import Footer from './components/Footer'
+import { useState } from 'react'
+import photos from "./data/photos.json";
 
 function App() {
+  const [activeCategory, setActiveCategory] = useState('wszystkie');
+  const [basePhotos, setBasePhotos] = useState(photos);
+
+  const visible = activeCategory == "wszystkie" ? basePhotos : basePhotos.filter(item => 
+    item.category == activeCategory
+  )
+
+  function changeCategory(category) {
+    setActiveCategory(category);
+  }
+
+  function deleteImage(id) {
+    setBasePhotos(basePhotos.filter(item => item.id != id))
+    console.log(basePhotos)
+  }
+
+  function onAdd(image) {
+    const newId = Math.max(...photos.map(i => i.id)) + 1
+    setBasePhotos([...basePhotos, {...image, id: newId, favourite: false}])
+  }
+
+  function toggleFavourite(id) {
+    setBasePhotos(basePhotos.map(i => i.id === id ? {...i, favourite: !i.favourite} : i))
+  }
+
   return (
    <div>
     <Navbar />
@@ -34,7 +62,7 @@ function App() {
                <button
               className='btn btn-outline-secondary'
               data-bs-toggle="modal"
-              data-bs-target="#dodajZdjecie"
+              data-bs-target="#addImage"
               type='button'>
                 Dodaj zdjęcie
               </button>
@@ -43,10 +71,11 @@ function App() {
         </div>
       </header>
       <div className="container mt-4 d-flex flex-column gap-2">
-        <CategoryBar />
-        <Gallery />
+        <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
+        <ImageCounter allPhotos={basePhotos?.length} visible={visible?.length} />
+        <Gallery photos={visible} deleteFunction={deleteImage} favouriteFunction={toggleFavourite}/>
       </div>
-      <AddPhotoModal/>
+      <AddPhotoModal onAdd={onAdd}/>
       <FiltersOffCanvas />
       <Footer />
    </div>
