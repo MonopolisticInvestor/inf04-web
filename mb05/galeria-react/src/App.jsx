@@ -12,26 +12,19 @@ import photos from "./data/photos.json";
 function App() {
   const [activeCategory, setActiveCategory] = useState('wszystkie');
   const [basePhotos, setBasePhotos] = useState(photos);
-  const [activePhotos, setActivePhotos] = useState(basePhotos);
+  // const [activePhotos, setActivePhotos] = useState(basePhotos);
 
+  const visible = activeCategory == "wszystkie" ? basePhotos : basePhotos.filter(item => 
+        item.category == activeCategory
+      )
+
+  console.log(`basePhotos:` , basePhotos)
   function changeCategory(category) {
     setActiveCategory(category);
-
-    if (category !== "wszystkie") {
-      //console.log(activePhotos.filter(item => item.category == category ))
-      // trzeba filtrowac wszytskie a nie przefiltrwoane!
-      setActivePhotos(basePhotos.filter(item => 
-        item.category == category
-      ))
-    } else {
-      setActivePhotos(basePhotos);
-    }
-    
   }
 
   function deleteImage(id) {
     setBasePhotos(basePhotos.filter(item => item.id != id))
-    // setActivePhotos(basePhotos)
     console.log(basePhotos)
   }
 
@@ -71,7 +64,7 @@ function App() {
       </header>
       <div className="container mt-4 d-flex flex-column gap-2">
         <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
-        <Gallery photos={activePhotos} deleteFunction={deleteImage}/>
+        <Gallery photos={visible} deleteFunction={deleteImage}/>
       </div>
       <AddPhotoModal/>
       <FiltersOffCanvas />

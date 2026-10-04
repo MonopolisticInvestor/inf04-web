@@ -4,10 +4,12 @@ const KOLOR_KATEGORII = { gory: 'success', morze: 'primary', miasto:
 'dark' }
 
 function PhotoCard({id, title, description, category, image, alt, deleteFunction}) {
+  let actualURL = image.includes("https://") ? image : `../assets/${image}`;  
+  console.log(actualURL)
     // console.log(id, `#zdjecie${id}`);
     return (
       <div id={`PhotoCard-${id}`} className="card h-100">
-        <img src={`../assets/${image}`} alt={alt} className="card-img-top img-fluid" style={{height: "200px", objectFit: "cover"}}/>
+        <img src={actualURL} alt={alt} className="card-img-top img-fluid" style={{height: "200px", objectFit: "cover"}}/>
         <div className="card-body">
             <h2 className="card-title h5">
               {title}

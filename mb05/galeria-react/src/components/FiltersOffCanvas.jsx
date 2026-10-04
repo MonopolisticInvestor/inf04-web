@@ -1,6 +1,6 @@
 function FiltersOffCanvas() {
     return (
-        <div className="offcanvas offcanvas-start" tabindex="-1" id="filterPanel">
+        <div className="offcanvas offcanvas-start" tabIndex="-1" id="filterPanel">
             <div className="offcanvas-header">
                 <h2 className="offcanvas-title h5" id="filterPanelLabel"></h2>
                 <button

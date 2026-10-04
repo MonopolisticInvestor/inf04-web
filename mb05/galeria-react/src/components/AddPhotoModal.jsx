@@ -21,7 +21,7 @@ function AddPhotoModal() {
                                     <label htmlFor="title" className="form-label">Tytuł</label>
                                     <input type="text" name="title" id="title" className="form-control"></input>
                                     <div className="invalid-feedback">
-                                        POdaj tytuł zdjęcia - to pole jest wymagane
+                                        Podaj tytuł zdjęcia - to pole jest wymagane
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -41,8 +41,8 @@ function AddPhotoModal() {
                                     Plik ze zdjęciem
                                 </label>
                             </div>
-                            <input type="file" className="form-control" id="file" accept="image/*" />
-                            <div className="form-text">JPG lub PNG, maksymalnie 5MB.</div>
+                            <input type="text" className="form-control" id="file" />
+                            <div className="form-text">Adres URL - https:// ...</div>
 
                             <div className="col-12">
                                 <label htmlFor="description" className="form-label">
