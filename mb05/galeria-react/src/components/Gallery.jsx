@@ -15,13 +15,13 @@ function Gallery({photos, deleteFunction}) {
                     <Fragment key={photoItem.id}>
                         <div className="col-12 col-md-6 col-lg-4">
                             <PhotoCard
-                            title={photoItem.title}
-                            id={photoItem.id}
-                            description={photoItem.description}
-                            category={photoItem.category}
-                            image={photoItem.image}
-                            alt={photoItem.alt}
-                            deleteFunction={deleteFunction}
+                                title={photoItem.title}
+                                id={photoItem.id}
+                                description={photoItem.description}
+                                category={photoItem.category}
+                                image={photoItem.image}
+                                alt={photoItem.alt}
+                                deleteFunction={deleteFunction}
                             />
                         </div>
                         <PhotoModal

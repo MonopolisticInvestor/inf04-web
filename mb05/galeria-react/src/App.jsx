@@ -12,11 +12,10 @@ import photos from "./data/photos.json";
 function App() {
   const [activeCategory, setActiveCategory] = useState('wszystkie');
   const [basePhotos, setBasePhotos] = useState(photos);
-  // const [activePhotos, setActivePhotos] = useState(basePhotos);
 
   const visible = activeCategory == "wszystkie" ? basePhotos : basePhotos.filter(item => 
-        item.category == activeCategory
-      )
+    item.category == activeCategory
+  )
 
   console.log(`basePhotos:` , basePhotos)
   function changeCategory(category) {
@@ -26,6 +25,11 @@ function App() {
   function deleteImage(id) {
     setBasePhotos(basePhotos.filter(item => item.id != id))
     console.log(basePhotos)
+  }
+
+  function onAdd(image) {
+    const newId = Math.max(...photos.map(i => i.id)) + 1
+    setBasePhotos([...basePhotos, {...image, id: newId, favourite: false}])
   }
 
   return (
@@ -54,7 +58,7 @@ function App() {
                <button
               className='btn btn-outline-secondary'
               data-bs-toggle="modal"
-              data-bs-target="#dodajZdjecie"
+              data-bs-target="#addImage"
               type='button'>
                 Dodaj zdjęcie
               </button>
@@ -66,7 +70,7 @@ function App() {
         <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
         <Gallery photos={visible} deleteFunction={deleteImage}/>
       </div>
-      <AddPhotoModal/>
+      <AddPhotoModal onAdd={onAdd}/>
       <FiltersOffCanvas />
       <Footer />
    </div>
