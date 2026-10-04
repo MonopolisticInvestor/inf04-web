@@ -3,9 +3,7 @@ import { Fragment } from "react"
 import PhotoCard from "./PhotoCard"
 import PhotoModal from "./PhotoModal"
 
-function Gallery({photos, deleteFunction}) {
-    console.log(photos)
-
+function Gallery({photos, deleteFunction, favouriteFunction}) {
     return (
         <>
          <div className="row g-4" id="gallery">
@@ -22,6 +20,8 @@ function Gallery({photos, deleteFunction}) {
                                 image={photoItem.image}
                                 alt={photoItem.alt}
                                 deleteFunction={deleteFunction}
+                                favouriteFunction={favouriteFunction}
+                                favourite={photoItem.favourite}
                             />
                         </div>
                         <PhotoModal

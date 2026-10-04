@@ -5,6 +5,7 @@ import CategoryBar from './components/CategoryBar'
 import Navbar from './components/Navbar'
 import AddPhotoModal from './components/AddPhotoModal'
 import FiltersOffCanvas from './components/FiltersOffCanvas'
+import ImageCounter from './components/ImageCounter'
 import Footer from './components/Footer'
 import { useState } from 'react'
 import photos from "./data/photos.json";
@@ -17,7 +18,6 @@ function App() {
     item.category == activeCategory
   )
 
-  console.log(`basePhotos:` , basePhotos)
   function changeCategory(category) {
     setActiveCategory(category);
   }
@@ -30,6 +30,10 @@ function App() {
   function onAdd(image) {
     const newId = Math.max(...photos.map(i => i.id)) + 1
     setBasePhotos([...basePhotos, {...image, id: newId, favourite: false}])
+  }
+
+  function toggleFavourite(id) {
+    setBasePhotos(basePhotos.map(i => i.id === id ? {...i, favourite: !i.favourite} : i))
   }
 
   return (
@@ -68,7 +72,8 @@ function App() {
       </header>
       <div className="container mt-4 d-flex flex-column gap-2">
         <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
-        <Gallery photos={visible} deleteFunction={deleteImage}/>
+        <ImageCounter allPhotos={basePhotos?.length} visible={visible?.length} />
+        <Gallery photos={visible} deleteFunction={deleteImage} favouriteFunction={toggleFavourite}/>
       </div>
       <AddPhotoModal onAdd={onAdd}/>
       <FiltersOffCanvas />

@@ -6,7 +6,8 @@
     "category": "gory",
     "image": "rysy.webp",
     "imageLarge": "rysy.webp",
-    "alt": "rysy"
+    "alt": "rysy",
+    "favourite": false
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "category": "gory",
     "image": "rysy2.webp",
     "imageLarge": "rysy2.webp",
-    "alt": "v"
+    "alt": "Rysy",
+    "favourite": false
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@
     "category": "gory",
     "image": "gory2.webp",
     "imageLarge": "gory2.webp",
-    "alt": "gory2"
+    "alt": "gory2",
+    "favourite": false
   },
   {
     "id": 4,
@@ -33,7 +36,8 @@
     "category": "miasto",
     "image": "poznan.jpg",
     "imageLarge": "poznan.jpg",
-    "alt": "poznan"
+    "alt": "poznan",
+    "favourite": false
   },
   {
     "id": 5,
@@ -42,7 +46,8 @@
     "category": "miasto",
     "image": "katowice.jpg",
     "imageLarge": "katowice.jpg",
-    "alt": "katowice"
+    "alt": "katowice",
+    "favourite": false
   },
   {
     "id": 6,
@@ -51,7 +56,8 @@
     "category": "miasto",
     "image": "warsaw.jpg",
     "imageLarge": "warsaw.jpg",
-    "alt": "warsaw"
+    "alt": "warsaw",
+    "favourite": false
   },
   {
     "id": 7,
@@ -60,7 +66,8 @@
     "category": "miasto",
     "image": "gdynia.jpg",
     "imageLarge": "gdynia.jpg",
-    "alt": "gdynia"
+    "alt": "gdynia",
+    "favourite": false
   },
   {
     "id": 8,
@@ -69,6 +76,7 @@
     "category": "morze",
     "image": "ujscie-wisly.webp",
     "imageLarge": "ujscie-wisly.webp",
-    "alt": "Ujście wisły"
+    "alt": "Ujście wisły",
+    "favourite": false
   }
 ]
