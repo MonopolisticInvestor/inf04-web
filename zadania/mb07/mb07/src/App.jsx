@@ -8,6 +8,7 @@ function App() {
 
   const [searchedCourse, setSearchedCourse] = useState("");
   const [ascedningSort, setAscendingSort] = useState(false);
+  const [status, setStatus] = useState(null);
   const [courses, setCourses] = useState(["Programowanie w C#", "Angular dla początkujących", "Kurs Django"])
   
   function handleSubmit(event) {
@@ -17,8 +18,10 @@ function App() {
 
     if (courses[parsedCourseNumber - 1]) {
       console.log(courses[parsedCourseNumber - 1]);
+      setStatus({type: "success", message: (clientName.current.value + " " + courses[parsedCourseNumber - 1])})
     } else {
       console.log("Nieprawidłowy numer kursu");
+      setStatus({type: "error", message: "Nieprawidłowy numer kursu"})
     }
   }
 
@@ -51,6 +54,10 @@ function App() {
         <input className='form-control' ref={courseNumber} id="courseNumber" type="number"></input>
         <button className='btn btn-primary' style={{width: "150px"}}>Zapisz do kursu</button>
       </form>
+
+      <div className={(status?.type == "error" ? "alert alert-danger" : "alert alert-success") + " " + (status == null ? "d-none" : "")}>
+        {status != null && (status?.message)}
+      </div>
     </div>
   )
 }
