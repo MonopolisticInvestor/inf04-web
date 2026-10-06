@@ -5,6 +5,8 @@ import './App.css'
 function App() {
   const clientName = useRef(null);
   const courseNumber = useRef(null);
+
+  const [searchedCourse, setSearchedCourse] = useState("");
   const [courses, setCourses] = useState(["Programowanie w C#", "Angular dla początkujących", "Kurs Django"])
   
   function handleSubmit(event) {
@@ -19,13 +21,14 @@ function App() {
     }
   }
 
-
+  const visibleCourses = courses.filter(i => i.toLowerCase().includes(searchedCourse.toLowerCase()))
 
   return (
     <div className='d-flex flex-column p-5'>
       <h2>Liczba kursów: {courses.length}</h2>
+      <input type='text' placeholder='Szukaj kursu...' onChange={(e) => {setSearchedCourse(e.target.value)}}></input>
       <ol>
-        {courses.map((course) => (
+        {visibleCourses.map((course) => (
           <li key={`kurs-${course}`}>{course}</li>
         ))}
       </ol>
