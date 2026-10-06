@@ -36,6 +36,7 @@ function App() {
       <h2>Liczba kursów: {courses.length}</h2>
       <input type='text' placeholder='Szukaj kursu...' onChange={(e) => {setSearchedCourse(e.target.value)}}></input>
       <button style={{width: "70px"}} onClick={() => toggleSorting()} className='btn btn-secondary'>{ascedningSort ? "Z-A" : "A-Z"}</button>
+      <p>Znaleziono {visibleCourses.length} z {courses.length} kursów</p>
       <ol>
         {visibleCourses.map((course) => (
           <li key={`kurs-${course}`}>{course}</li>
