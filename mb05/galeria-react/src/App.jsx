@@ -7,16 +7,19 @@ import AddPhotoModal from './components/AddPhotoModal'
 import FiltersOffCanvas from './components/FiltersOffCanvas'
 import ImageCounter from './components/ImageCounter'
 import Footer from './components/Footer'
-import { useState } from 'react'
-import photos from "./data/photos.json";
+import { useState, useEffect } from 'react'
+import ZdjecieDnia from './components/ZdjecieDnia'
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('wszystkie');
-  const [basePhotos, setBasePhotos] = useState(photos);
+  const [basePhotos, setBasePhotos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("")
 
   const visible = activeCategory == "wszystkie" ? basePhotos : basePhotos.filter(item => 
     item.category == activeCategory
   )
+
 
   function changeCategory(category) {
     setActiveCategory(category);
@@ -36,6 +39,28 @@ function App() {
     setBasePhotos(basePhotos.map(i => i.id === id ? {...i, favourite: !i.favourite} : i))
   }
 
+  useEffect(() => {
+    async function fetchPhotos() {
+      let response = await fetch("/photos.json")
+      if (!response.ok) {
+        setError(response.status)
+      } else {
+        let data = await response.json()
+        setBasePhotos(data)
+
+        console.log(data)
+        if (data.length === 0) {
+          setError("Pusty folder")
+        }
+      }
+
+      setIsLoading(false)
+    }
+
+    fetchPhotos()
+  }, [])
+
+
   return (
    <div>
     <Navbar />
@@ -50,7 +75,8 @@ function App() {
               się spodoba.
             </p>
           </div>
-          <div className='col-12 col-lg-4'>
+          {isLoading == false && error == "" && (
+            <div className='col-12 col-lg-4'>
             <div className='d-flex flex-wrap gap-2 justify-content-lg-end'>
               <button
               className='btn btn-outline-secondary'
@@ -68,15 +94,38 @@ function App() {
               </button>
             </div>
           </div>
+          )}
+          
         </div>
       </header>
-      <div className="container mt-4 d-flex flex-column gap-2">
-        <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
-        <ImageCounter allPhotos={basePhotos?.length} visible={visible?.length} />
-        <Gallery photos={visible} deleteFunction={deleteImage} favouriteFunction={toggleFavourite}/>
-      </div>
-      <AddPhotoModal onAdd={onAdd}/>
-      <FiltersOffCanvas />
+
+      <ZdjecieDnia />
+      {isLoading == false && (
+        <>
+        {error !== "" ? <div className='container mt-4 m-4'>{error}</div> :
+          (
+          <>
+          <div className="container mt-4 d-flex flex-column gap-2">
+            <CategoryBar activeCategory={activeCategory} changeCategory={changeCategory} />
+            <ImageCounter allPhotos={basePhotos?.length} visible={visible?.length} />
+              <Gallery photos={visible} deleteFunction={deleteImage} favouriteFunction={toggleFavourite}/>
+            
+          </div>
+          <AddPhotoModal onAdd={onAdd}/>
+          <FiltersOffCanvas />
+          </>)
+          }
+        </>
+      )}
+      {isLoading && (
+        <div className='container d-flex justify-center items-center'>
+          <div className='spinner-border'>
+          </div>
+        </div>
+      )}
+      
+
+      
       <Footer />
    </div>
   )
