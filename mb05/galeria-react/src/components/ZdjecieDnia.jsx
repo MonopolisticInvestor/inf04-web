@@ -38,6 +38,8 @@ function ZdjecieDnia() {
             )
     }, [newImage])
 
+    console.log(error)
+
     return (
         <div className="d-flex align-items-center justify-content-center gap-4">
             {isLoading == true && error == "" && (
@@ -45,7 +47,7 @@ function ZdjecieDnia() {
                 </div>
             )}
             {isLoading == false && error !== "" && (
-                <h3 className="alert alert-danger">{error}</h3>
+                <h3 className="alert alert-danger">{error.toString()}</h3>
             )}
             {isLoading == false && error == "" && (
                 <img id="newImage" alt={imageInfo.author + "'s image" || ""}

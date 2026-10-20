@@ -2,6 +2,7 @@ import { Fragment } from "react"
 
 import PhotoCard from "./PhotoCard"
 import PhotoModal from "./PhotoModal"
+import { Link } from "react-router-dom";
 
 function Gallery({photos, deleteFunction, favouriteFunction}) {
     return (
@@ -10,6 +11,8 @@ function Gallery({photos, deleteFunction, favouriteFunction}) {
             {photos.length !== 0 ? (
                 photos.map((photoItem) => (
                 (
+                    // <Link to={"/zdjecie/" + photoItem.id}>Pow</Link>
+
                     <Fragment key={photoItem.id}>
                         <div className="col-12 col-md-6 col-lg-4">
                             <PhotoCard
@@ -24,13 +27,7 @@ function Gallery({photos, deleteFunction, favouriteFunction}) {
                                 favourite={photoItem.favourite}
                             />
                         </div>
-                        <PhotoModal
-                            id={photoItem.id}
-                            title={photoItem.title}
-                            description={photoItem.description}
-                            imageLarge={photoItem.imageLarge}
-                            alt={photoItem.alt}
-                        />
+                        
                     </Fragment>
                 )
             ))) :(<div className="alert alert-warning">Brak zdjęć</div>)}
