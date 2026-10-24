@@ -12,20 +12,32 @@ function ZdjeciePage() {
     const [actualUrl, setActualUrl] = useState("")
 
     useEffect(() => {
-        // console.log("1")
-        // console.log(fetchPhoto(id))
-        fetchPhoto(id)
-        .then(response => response.json()).then(response => {
-            console.log(response)
-            setImage(response)
-            setIsLoading(false)
+        async function setPhoto() {
+            const photo = await fetchPhoto(id);
 
-            setActualUrl(response.imageLarge.includes("https://") ? response.imageLarge : `../assets/${imageLarge}`);  
-            console.log(response)
-        }).catch(error => {
-            setError(error.toString())
-            setIsLoading(false)
-        })
+            if (photo !== null) {
+                setImage(photo);
+                setActualUrl(photo.image.includes("https://") ? photo.image : `../assets/${photo.imageLarge}`);  
+                setIsLoading(false)
+            } else {
+                setImage(null)
+                setError("Error fetching iamge")
+                setIsLoading(false)
+            }
+
+            // .then(response => {
+            //     setActualUrl(response.imageLarge.includes("https://") ? response.imageLarge : `../assets/${imageLarge}`);  
+            //     console.log(response)
+            //     console.log("Response")
+            //     setIsLoading(false)
+                
+            // }).catch(error => {
+            //     setError(error.toString())
+            //     setIsLoading(false)
+            // })
+        }
+
+        setPhoto()
     }, []);
     
     return (
@@ -33,6 +45,7 @@ function ZdjeciePage() {
 
             <div className="d-flex flex-column gap-2">
             <Link
+            style={{width: "125px"}}
             onClick={() => {navigate(-1)}}
             className="btn btn-outline-primary">
                 Wstecz
@@ -41,14 +54,24 @@ function ZdjeciePage() {
                 <div className="spinner-border">
                 </div>
             )}
-            {isLoading == false && error == "" && (
+            {isLoading == true && error !== "" && (
+                <div className="alert alert-warning">{error.toString()}</div>
+            )}
+            {isLoading == false && error == "" && image !== null && (
                 <div className="d-flex flex-column gap-2">
                     <div className="d-flex flex-column">
-                    <img src={actualUrl} className="img-fluid" alt={alt}/>
+                    <img src={actualUrl} className="img-fluid" alt={image.alt}/>
                     <div className="d-flex flex-column gap-2">
-                        <h2>{title}</h2>
+                        <h2>{image.title}</h2>
                     </div>
-                    <p>{description}</p>
+                    <p>{image.description}</p>
+                    </div>
+                </div>
+            )}
+            {isLoading == false && error !== "" && image == undefined && (
+                <div className="d-flex flex-column gap-2">
+                    <div className="d-flex flex-column justify-content-center align-items-center">
+                        <h2>Brak zdjęcia</h2>
                     </div>
                 </div>
             )}

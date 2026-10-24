@@ -6,7 +6,8 @@ import ImageCounter from '../components/ImageCounter'
 import Footer from '../components/Footer'
 import { useState, useEffect } from 'react'
 import ZdjecieDnia from '../components/ZdjecieDnia'
-import { Link } from "react-router-dom"
+import { data, Link } from "react-router-dom"
+import { fetchPhotos, toggleFavouriteSource, deleteImageSource } from "../services/zdjecia"
 
 function GaleriaPage() {
     const [activeCategory, setActiveCategory] = useState('wszystkie');
@@ -14,35 +15,41 @@ function GaleriaPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("")
 
-    const visible = activeCategory == "wszystkie" ? basePhotos : basePhotos.filter(item => 
-        item.category == activeCategory
-    )
-
-
     function changeCategory(category) {
         setActiveCategory(category);
     }
 
-    function deleteImage(id) {
-        setBasePhotos(basePhotos.filter(item => item.id != id))
-        console.log(basePhotos)
+    async function deleteImage(id) {
+        setBasePhotos(deleteImageSource(id))
     }
 
-    function onAdd(image) {
-        const newId = Math.max(...photos.map(i => i.id)) + 1
-        setBasePhotos([...basePhotos, {...image, id: newId, favourite: false}])
-    }
 
     function toggleFavourite(id) {
-        setBasePhotos(basePhotos.map(i => i.id === id ? {...i, favourite: !i.favourite} : i))
+        setBasePhotos(toggleFavouriteSource(id))
     }
 
     useEffect(() => {
-        
-
-        fetchPhotos()
+        async function setPhotos() {
+            let photos = []
+            await fetchPhotos().then((data) => {photos = data})
+            console.log("Result: ", data)
+            setBasePhotos(photos)
+            setIsLoading(false)
+            // if (result) {
+            //     const photos = []
+            //     result.then(data => photos = data)
+            //     console.log("Result: ", data)
+            //     setBasePhotos(photos)
+            //     setIsLoading(false)
+            // }
+        }
+        setPhotos()
     }, [])
 
+
+    const visible = activeCategory == "wszystkie" ? basePhotos : basePhotos.filter(item => 
+        item.category == activeCategory
+    )
 
     return (
         <>
@@ -75,7 +82,7 @@ function GaleriaPage() {
                         Dodaj zdjęcie
                     </button>
                 */}
-                <Link to="/dodaj">
+                <Link className="btn btn-outline-secondary" to="/dodaj">
                     Dodaj zdjęcie
                 </Link>
                 </div>
@@ -97,7 +104,6 @@ function GaleriaPage() {
                         <Gallery photos={visible} deleteFunction={deleteImage} favouriteFunction={toggleFavourite}/>
                         
                     </div>
-                    <AddPhotoModal onAdd={onAdd}/>
                     <FiltersOffCanvas />
                     </>
                     )

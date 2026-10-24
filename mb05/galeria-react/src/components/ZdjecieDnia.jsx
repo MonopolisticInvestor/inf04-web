@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PhotoCard from "./PhotoCard";
 
 function ZdjecieDnia() {
     const [imageInfo, setImageInfo] = useState("")
@@ -14,7 +13,10 @@ function ZdjecieDnia() {
     }
 
     useEffect(() => {
+        setIsLoading(true)
+        setError("")
         let randomId = 0;
+        console.log(randomId, newImage)
         if (newImage == 0) {
             randomId = Math.floor(Math.random() * 300);
         } else {
@@ -41,7 +43,7 @@ function ZdjecieDnia() {
     console.log(error)
 
     return (
-        <div className="d-flex align-items-center justify-content-center gap-4">
+        <div className="d-flex flex-column align-items-center justify-content-center gap-4">
             {isLoading == true && error == "" && (
                 <div className="spinner-border">
                 </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { addImage } from "../services/zdjecia"
+import { useNavigate } from "react-router-dom";
 const pustyFormularz = {
     title: "",
     category: "",
@@ -11,6 +12,7 @@ const pustyFormularz = {
 
 function DodajPage() {
     const [formularz, setFormularz] = useState(pustyFormularz);
+    const navigate = useNavigate();
         function changeProperty(property) {
             return function(event) {
                 setFormularz({...formularz, [property]: event.target.value})
@@ -19,7 +21,7 @@ function DodajPage() {
     
         function usageOfSubmit(event) {
             event.preventDefault();
-            onAdd({
+            addImage({
                 title: formularz.title,
                 category: formularz.category,
                 image: formularz.image,
@@ -45,6 +47,7 @@ function DodajPage() {
                         <button
                             type="button"
                             className="btn btn-outline-primary"
+                            onClick={() => navigate(-1)}
                         >
                             Wstecz
                         </button>

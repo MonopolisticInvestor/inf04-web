@@ -18,3 +18,11 @@ a {
  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
+a.active {
+  color: red;
+}
+
+a.pending {
+  animate: pulse 1s infinite;
+}
+

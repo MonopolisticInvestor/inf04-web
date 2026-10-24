@@ -9,7 +9,7 @@ function toggleFavourite(id) {
     setBasePhotos(basePhotos.map(i => i.id === id ? {...i, favourite: !i.favourite} : i))
 }
 
-async function fetchPhotos() {
+export async function fetchPhotos() {
     if (photos) return photos;
 
     let response = await fetch("/photos.json")
@@ -39,6 +39,41 @@ export async function fetchPhoto(id) {
     }
 }
 
-export function deleteImage() {
+export function deleteImageSource(id) {
+    console.log("deleteImageSource")
+    const foundItem = photos.findIndex(item => item.id == id)
 
+    console.log(foundItem)
+    if (foundItem !== -1) {
+        photos = photos.filter(item => item.id !== id)
+        console.log(photos) // shows less images
+        return photos;
+    } else {
+        return photos;
+    }
+}
+
+export async function addImage(image) {
+    if (!photos) {
+        photos = await fetchPhotos()
+    }
+    const newId = Math.max(...photos.map(i => i.id)) + 1
+    photos.push({ ...image, id: newId, favourite: false})
+}
+
+export function toggleFavouriteSource(id) {
+    const foundItem = photos.find(item => item.id == id)
+    console.log("toggleFavouriteSource")
+    console.log(foundItem)
+    if (foundItem) {
+        //foundItem.favourite = !foundItem.favourite;
+        let photos2 = photos.map((item) => {
+            return item.id == id ? ({...item, favourite: !foundItem.favourite}) : item
+        })
+
+        photos = photos2;
+        return photos;
+    } else {
+        return photos;
+    }
 }

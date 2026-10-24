@@ -1,10 +1,9 @@
 import { Fragment } from "react"
 
 import PhotoCard from "./PhotoCard"
-import PhotoModal from "./PhotoModal"
-import { Link } from "react-router-dom";
 
 function Gallery({photos, deleteFunction, favouriteFunction}) {
+    console.log(photos)
     return (
         <>
          <div className="row g-4" id="gallery">
