@@ -1,15 +1,17 @@
 import { Fragment } from "react"
 
 import PhotoCard from "./PhotoCard"
-import PhotoModal from "./PhotoModal"
 
 function Gallery({photos, deleteFunction, favouriteFunction}) {
+    console.log(photos)
     return (
         <>
          <div className="row g-4" id="gallery">
             {photos.length !== 0 ? (
                 photos.map((photoItem) => (
                 (
+                    // <Link to={"/zdjecie/" + photoItem.id}>Pow</Link>
+
                     <Fragment key={photoItem.id}>
                         <div className="col-12 col-md-6 col-lg-4">
                             <PhotoCard
@@ -24,13 +26,7 @@ function Gallery({photos, deleteFunction, favouriteFunction}) {
                                 favourite={photoItem.favourite}
                             />
                         </div>
-                        <PhotoModal
-                            id={photoItem.id}
-                            title={photoItem.title}
-                            description={photoItem.description}
-                            imageLarge={photoItem.imageLarge}
-                            alt={photoItem.alt}
-                        />
+                        
                     </Fragment>
                 )
             ))) :(<div className="alert alert-warning">Brak zdjęć</div>)}
