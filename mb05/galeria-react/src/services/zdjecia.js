@@ -1,5 +1,17 @@
 let photos = null;
 
+/**
+    Dodaje nowe zdjęcie do pamięci serwera
+    @param {{
+        title: string,
+        category: string,
+        image: string,
+        imageLarge: string,
+        alt: string,
+        description: string
+    }} [image]
+    @returns none - funkcja ustawia pamięć w useState.
+*/
 export function onAdd(image) {
     const newId = Math.max(...photos.map(i => i.id)) + 1
     setBasePhotos([...basePhotos, {...image, id: newId, favourite: false}])
@@ -9,6 +21,18 @@ function toggleFavourite(id) {
     setBasePhotos(basePhotos.map(i => i.id === id ? {...i, favourite: !i.favourite} : i))
 }
 
+/**
+ * Pobiera zdjęcia z pliku "photos.json"
+ * @param none
+    @returns {Array<{id: number, title: string,
+    description: string,
+    category: string,
+    image: string,
+    imageLarge: string,
+    alt: string,
+    favourite: boolean}>>}
+ * }
+ */
 export async function fetchPhotos() {
     if (photos) return photos;
 
@@ -27,6 +51,18 @@ export async function fetchPhotos() {
     }
 }
 
+/**
+ * Pobiera konkretne zdjęcie z pliku "photos.json" lub jeśli nie ma zdjęć, pobiera, używając fetchPhotos()
+ * @param id - number
+    @returns {{id: number, title: string,
+    description: string,
+    category: string,
+    image: string,
+    imageLarge: string,
+    alt: string,
+    favourite: boolean} | null}
+ * }
+ */
 export async function fetchPhoto(id) {
     const images = await fetchPhotos()
     const foundImage = images.find(item => item.id == Number(id))
@@ -39,6 +75,18 @@ export async function fetchPhoto(id) {
     }
 }
 
+/**
+ * Usuwa konkretne zdjęcie z pamięci serwera
+ * @param id - number
+    @returns {Array<{id: number, title: string,
+    description: string,
+    category: string,
+    image: string,
+    imageLarge: string,
+    alt: string,
+    favourite: boolean}>>} - zaktualizowane zdjęcia bez tego konkretnego.
+ * }
+ */
 export function deleteImageSource(id) {
     console.log("deleteImageSource")
     const foundItem = photos.findIndex(item => item.id == id)
@@ -61,6 +109,18 @@ export async function addImage(image) {
     photos.push({ ...image, id: newId, favourite: false})
 }
 
+/**
+ * Zmienia wartość pola "favourite" konkretnego zdjęcie w pamięci serwera
+ * @param id - number
+    @returns {Array<{id: number, title: string,
+    description: string,
+    category: string,
+    image: string,
+    imageLarge: string,
+    alt: string,
+    favourite: boolean}>>} - zaktualizowane zdjęcia z konkretnym ustawionym na odwrotną wartość pola favourite.
+ * }
+ */
 export function toggleFavouriteSource(id) {
     const foundItem = photos.find(item => item.id == id)
     console.log("toggleFavouriteSource")
